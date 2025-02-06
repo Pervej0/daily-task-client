@@ -12,9 +12,7 @@ const schema = z.object({
   email: z.string().email("Please enter a valid email"),
 });
 
-type FormData = {
-  email: string;
-};
+type FormData = z.infer<typeof schema>;
 
 const ForgotPassword = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -23,7 +21,7 @@ const ForgotPassword = () => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm({
+  } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
 
