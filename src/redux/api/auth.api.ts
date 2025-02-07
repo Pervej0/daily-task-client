@@ -1,21 +1,21 @@
 import { baseApi } from "./baseApi";
 
-const taskApi = baseApi.injectEndpoints({
-  endpoints: (build) => ({
-    getMyProfile: build.query({
+const authApi = baseApi.injectEndpoints({
+  endpoints: (builder) => ({
+    getMyProfile: builder.query({
       query: () => ({ url: "/auth/profile", method: "GET" }),
     }),
-    updateMyProfile: build.mutation({
-      query: (data) => ({ url: "/auth/profile", method: "GET", data }),
+    updateMyProfile: builder.mutation({
+      query: (data) => ({ url: "/auth/profile", method: "PUT", data }),
     }),
-    forgotPassword: build.mutation({
+    forgotPassword: builder.mutation({
       query: (data) => ({
         url: "/auth/forgot-password",
         method: "PUT",
         data,
       }),
     }),
-    resetPassword: build.mutation({
+    resetPassword: builder.mutation({
       query: (data) => ({
         url: "/auth/reset-password",
         method: "PUT",
@@ -30,4 +30,4 @@ export const {
   useResetPasswordMutation,
   useGetMyProfileQuery,
   useUpdateMyProfileMutation,
-} = taskApi;
+} = authApi;
