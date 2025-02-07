@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import { FieldValues } from "react-hook-form";
 
 export const loginUser = async (data: FieldValues) => {
@@ -11,5 +12,12 @@ export const loginUser = async (data: FieldValues) => {
     cache: "no-store",
   });
   const userInfo = await response.json();
+  console.log(userInfo, "pxpxxpxp");
+  if (userInfo.success === false) {
+    return userInfo;
+  }
+  if (userInfo.data.accessToken) {
+    redirect("/tasks");
+  }
   return userInfo;
 };
