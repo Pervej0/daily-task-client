@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Table,
   TableBody,
@@ -8,9 +10,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { getUserInfo } from "@/services/auth.service";
 import React from "react";
 
 const TasksPage = () => {
+  const userInfo = getUserInfo();
+  console.log(userInfo, "xpxpxpxpx");
+
   return (
     <div className="px-6 w-full">
       <div className="text-center">

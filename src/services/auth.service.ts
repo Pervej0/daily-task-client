@@ -5,6 +5,7 @@ import {
   removeFromLocalStorage,
   setToLocalStorage,
 } from "@/utils/localStorage";
+import { removeAuthCookieToken } from "@/utils/validateCookieToken";
 
 export const storeUserInfo = (token: string) => {
   return setToLocalStorage(authKey, token);
@@ -27,5 +28,6 @@ export const getUserInfo = () => {
 };
 
 export const removeUser = () => {
+  removeAuthCookieToken(["accessToken"]);
   return removeFromLocalStorage(authKey);
 };

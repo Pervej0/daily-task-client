@@ -10,6 +10,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters long"),
@@ -64,7 +65,11 @@ const RegisterPage = () => {
           >
             <div>
               <Label htmlFor="name">Name</Label>
-              <Input id="name" {...register("fullName")} />
+              <Input
+                id="name"
+                placeholder="Enter your full name"
+                {...register("fullName")}
+              />
               {errors.fullName && (
                 <p className="text-red-500 text-sm pt-1">
                   {errors.fullName.message}
@@ -73,7 +78,12 @@ const RegisterPage = () => {
             </div>
             <div>
               <label htmlFor="name">Email</label>
-              <Input id="email" type="email" {...register("email")} />
+              <Input
+                id="email"
+                placeholder="Enter your email"
+                type="email"
+                {...register("email")}
+              />
               {errors.email && (
                 <p className="text-red-500 text-sm pt-1">
                   {errors.email.message}
@@ -107,6 +117,14 @@ const RegisterPage = () => {
               Login
             </Button>
           </form>
+          <div className="pt-4">
+            <h4 className="text-md">
+              Already have an account?{" "}
+              <Link href="/login" className="font-bold underline">
+                log in
+              </Link>
+            </h4>
+          </div>
         </div>
       </div>
     </section>

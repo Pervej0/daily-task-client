@@ -7,6 +7,8 @@ import {
 } from "@/components/ui/sidebar";
 import sidebarItems from "@/utils/sidebarItems";
 import Link from "next/link";
+import { Button } from "../ui/button";
+import logOutUser from "@/services/actions/logOut";
 
 export function AppSidebar() {
   return (
@@ -24,7 +26,14 @@ export function AppSidebar() {
           </SidebarGroup>
         ))}
       </SidebarContent>
-      <SidebarFooter />
+      <SidebarFooter>
+        <Button
+          onClick={logOutUser}
+          className="text-white bg-black hover:bg-gray-800"
+        >
+          Log out
+        </Button>
+      </SidebarFooter>
     </Sidebar>
   );
 }

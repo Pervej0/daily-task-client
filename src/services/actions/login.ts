@@ -1,3 +1,4 @@
+import { setAuthCookieToken } from "@/utils/validateCookieToken";
 import { FieldValues } from "react-hook-form";
 
 export const loginUser = async (data: FieldValues) => {
@@ -12,6 +13,10 @@ export const loginUser = async (data: FieldValues) => {
   });
   const userInfo = await response.json();
   if (userInfo.success === false) {
+    return userInfo;
+  }
+  if (userInfo.data.accessToken) {
+    await setAuthCookieToken(userInfo.data.accessToken);
     return userInfo;
   }
 

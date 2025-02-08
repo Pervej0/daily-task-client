@@ -3,7 +3,7 @@ import { removeUser } from "../auth.service";
 
 const logOutUser = (router: any) => {
   removeUser();
-  router.push("/");
+  // router.push("/");
   router.refresh();
 };
 
