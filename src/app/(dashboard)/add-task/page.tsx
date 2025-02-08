@@ -93,7 +93,7 @@ const AddTask = () => {
               className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Sending..." : "Task creating"}
+              {isSubmitting ? "Sending..." : "Create Task"}
             </Button>
           </form>
         </div>
