@@ -25,4 +25,9 @@ const taskApi = baseApi.injectEndpoints({
   }),
 });
 
-export const {} = taskApi;
+export const {
+  useCreateTaskMutation,
+  useGetAllTasksQuery,
+  useGetSingleTaskQuery,
+  useUpdateTaskMutation,
+} = taskApi;

@@ -54,7 +54,6 @@ const RegisterPage = () => {
         email: data.email,
         password: data.password,
       });
-      console.log(userLogin, "User Loggginnn");
       if (userLogin.success) {
         toast.success("User logged in successfully!");
         router.refresh();

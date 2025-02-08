@@ -21,6 +21,11 @@ const sidebarItems = [
     path: "/profile",
     icon: Search,
   },
+  {
+    title: "Update Profile",
+    path: "/update-profile",
+    icon: Search,
+  },
 ];
 
 export default sidebarItems;
