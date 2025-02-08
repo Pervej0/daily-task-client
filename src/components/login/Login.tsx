@@ -40,7 +40,7 @@ const Login = () => {
 
   const onSubmit = async (data: FormData) => {
     const response: FieldValues = await loginUser(data);
-    console.log(response, "xxxx");
+
     if (response.success) {
       toast.success("Logged in successfully.");
       router.refresh();
@@ -85,7 +85,6 @@ const Login = () => {
                   {errors.email?.message}
                 </span>
               </div>
-
               <div className="relative mb-4">
                 <Label>Password</Label>
                 <div className="relative">
