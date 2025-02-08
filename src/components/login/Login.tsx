@@ -12,7 +12,7 @@ import { Toaster, toast } from "sonner";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 import { loginUser } from "@/services/actions/login";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { storeUserInfo } from "@/services/auth.service";
 
 const formSchema = z.object({
@@ -32,23 +32,24 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    // reset,
+    reset,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
 
   const onSubmit = async (data: FormData) => {
-    console.log(data, "xxx");
     const response: FieldValues = await loginUser(data);
+    console.log(response, "xxxx");
     if (response.success) {
       toast.success("Logged in successfully.");
       router.refresh();
       storeUserInfo(response.data.accessToken);
+      redirect("/tasks");
     } else {
       toast.error((response?.message as string) || "something went wrong");
+      reset();
     }
-    // reset();
   };
 
   const handleForgot = () => {};
