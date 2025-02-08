@@ -9,7 +9,7 @@ export default function NotFound() {
         Sorry, the page you are looking for does not exist.
       </p>
       <Link
-        href="/"
+        href="/tasks"
         className="mt-6 px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
       >
         Go Home

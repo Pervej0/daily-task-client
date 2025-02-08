@@ -16,6 +16,11 @@ const sidebarItems = [
     path: "/add-task",
     icon: Search,
   },
+  {
+    title: "Profile",
+    path: "/profile",
+    icon: Search,
+  },
 ];
 
 export default sidebarItems;

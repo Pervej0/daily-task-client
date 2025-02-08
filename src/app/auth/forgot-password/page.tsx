@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useForm } from "react-hook-form";
@@ -6,7 +7,8 @@ import { z } from "zod";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useState } from "react";
+import { useForgotPasswordMutation } from "@/redux/api/auth.api";
+import { toast } from "sonner";
 
 const schema = z.object({
   email: z.string().email("Please enter a valid email"),
@@ -15,7 +17,8 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 const ForgotPassword = () => {
-  const [submitted, setSubmitted] = useState(false);
+  // const [submitted, setSubmitted] = useState(false);
+  const [forgotPassword, { isSuccess }] = useForgotPasswordMutation();
 
   const {
     register,
@@ -25,9 +28,18 @@ const ForgotPassword = () => {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log("Reset Password Email Sent:", data);
-    setSubmitted(true);
+  const onSubmit = async (values: FormData) => {
+    try {
+      const res = (await forgotPassword(values)) as any;
+      if (res?.success) {
+        toast.success(res.message || "Check Your Email for Reset Link");
+      } else {
+        toast.error("Something Went Wrong, Try Again");
+        throw new Error("Something Went Wrong, Try Again");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -38,7 +50,7 @@ const ForgotPassword = () => {
           Enter your email to receive password reset instructions.
         </p>
 
-        {submitted ? (
+        {isSuccess ? (
           <div className="text-green-600 text-center font-semibold">
             ✅ Reset link sent! Check your email.
           </div>

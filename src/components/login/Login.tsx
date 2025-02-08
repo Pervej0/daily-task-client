@@ -108,13 +108,15 @@ const Login = () => {
               </div>
 
               <div className="text-end">
-                <button
-                  onClick={handleForgot}
-                  type="button"
-                  className="text-sm"
-                >
-                  Forgot Password
-                </button>
+                <Link href="/auth/forgot-password">
+                  <button
+                    onClick={handleForgot}
+                    type="button"
+                    className="text-sm"
+                  >
+                    Forgot Password
+                  </button>
+                </Link>
               </div>
               <Button type="submit" className="uppercase px-6 border-2 rounded">
                 Login

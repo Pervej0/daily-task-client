@@ -9,11 +9,14 @@ const authApi = baseApi.injectEndpoints({
       query: (data) => ({ url: "/auth/profile", method: "PUT", data }),
     }),
     forgotPassword: builder.mutation({
-      query: (data) => ({
-        url: "/auth/forgot-password",
-        method: "PUT",
-        data,
-      }),
+      query: (data) => {
+        return {
+          url: "/auth/forgot-password",
+          method: "PUT",
+          contentType: "application/json",
+          data: data,
+        };
+      },
     }),
     resetPassword: builder.mutation({
       query: (data) => ({

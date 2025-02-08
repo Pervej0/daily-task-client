@@ -1,7 +1,6 @@
 import { FieldValues } from "react-hook-form";
 
 export const registerUser = async (data: FieldValues) => {
-  console.log(data, "xpxpxc");
   const response = await fetch(`${process.env.BACK_END_URL}/auth/register`, {
     method: "POST",
     headers: {
