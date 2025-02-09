@@ -12,11 +12,6 @@ const sidebarItems = [
     icon: Plus,
   },
   {
-    title: "Search Task",
-    path: "/search-task",
-    icon: Search,
-  },
-  {
     title: "Profile",
     path: "/profile",
     icon: Search,

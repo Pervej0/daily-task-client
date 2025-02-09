@@ -33,7 +33,7 @@ const Login = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
@@ -118,8 +118,12 @@ const Login = () => {
                   </button>
                 </Link>
               </div>
-              <Button type="submit" className="uppercase px-6 border-2 rounded">
-                Login
+              <Button
+                type="submit"
+                className="uppercase px-6 border-2 rounded"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Processing..." : "Login"}
               </Button>
             </form>
             <div className="pt-4">

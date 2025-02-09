@@ -10,6 +10,17 @@ import {
 import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { toast, Toaster } from "sonner";
+import { z } from "zod";
+
+const formSchema = z.object({
+  fullName: z
+    .string()
+    .min(2, "Name must be at least 2 characters long")
+    .optional(),
+  email: z.string().email("Invalid email address").optional(),
+  bio: z.string().min(6, "Enter your bio"),
+});
+type FormData = z.infer<typeof formSchema>;
 
 const UpdateProfile = () => {
   const [updateProfile] = useUpdateMyProfileMutation();
@@ -19,8 +30,8 @@ const UpdateProfile = () => {
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting },
-  } = useForm<any>();
+    formState: { errors, isSubmitting },
+  } = useForm<FormData>();
 
   const onSubmit = async (values: any) => {
     const data = {
@@ -75,6 +86,9 @@ const UpdateProfile = () => {
                 className="w-full border px-2"
                 {...register("bio")}
               />
+              <span className="text-red-500 text-sm pt-1 min-h-[20px] whitespace-nowrap">
+                {errors?.bio?.message}
+              </span>
             </div>
 
             {/* Submit Button */}

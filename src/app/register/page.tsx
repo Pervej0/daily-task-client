@@ -35,7 +35,7 @@ const RegisterPage = () => {
     register,
     handleSubmit,
     // reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
@@ -136,8 +136,12 @@ const RegisterPage = () => {
                   )}
                 </div>
               </div>
-              <Button type="submit" className="uppercase px-6 border-2 rounded">
-                Login
+              <Button
+                type="submit"
+                className="uppercase px-6 border-2 rounded"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Processing..." : "Register"}
               </Button>
             </form>
             <div className="pt-4">
