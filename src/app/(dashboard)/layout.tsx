@@ -1,10 +1,11 @@
 "use client";
 
 import { AppSidebar } from "@/components/dashboard/app-sidebar";
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { getUserInfo } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
+import Loading from "@/components/Loading";
 
 const Layout = ({ children }) => {
   const router = useRouter();
@@ -20,7 +21,7 @@ const Layout = ({ children }) => {
     <SidebarProvider>
       <AppSidebar />
       <SidebarTrigger />
-      {children}
+      <Suspense fallback={<Loading />}> {children}</Suspense>
     </SidebarProvider>
   );
 };

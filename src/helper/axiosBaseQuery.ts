@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { BaseQueryFn } from "@reduxjs/toolkit/query";
 import { AxiosRequestConfig } from "axios";
 import { instance as AxiosInstance } from "./axiosInstance";

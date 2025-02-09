@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { DatePickerDemo } from "@/components/shared/datePicker";
@@ -37,11 +36,11 @@ const AddTask = () => {
     values.dueDate = formattedDate(date);
 
     const result = await createTask(values);
-    if (result.data.success) {
-      toast.success(result.data.message);
+    if (result?.data?.success) {
+      toast.success(result?.data?.message);
       reset();
     } else {
-      toast.error(result.data?.error);
+      toast.error(result?.data?.error);
     }
   };
 
@@ -65,9 +64,9 @@ const AddTask = () => {
                 placeholder="Enter title"
                 {...register("title")}
               />
-              {errors.title && (
+              {errors?.title && (
                 <p className="text-red-500 text-sm pt-1">
-                  {errors.title.message}
+                  {errors?.title?.message}
                 </p>
               )}
             </div>
@@ -79,9 +78,9 @@ const AddTask = () => {
                 className="w-full border px-2 min-h-16"
                 {...register("description")}
               />
-              {errors.description && (
+              {errors?.description && (
                 <p className="text-red-500 text-sm pt-1">
-                  {errors.description.message}
+                  {errors?.description?.message}
                 </p>
               )}
             </div>

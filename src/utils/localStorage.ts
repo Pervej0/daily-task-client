@@ -1,21 +1,21 @@
 export const setToLocalStorage = (key: string, token: string) => {
-  if (!key || typeof window === undefined) {
-    return "";
+  const ISSERVER = typeof window === "undefined";
+  if (!ISSERVER) {
+    return localStorage.setItem(key, token);
   }
-  return localStorage.setItem(key, token);
 };
 
 export const getTokenFromLocalStorage = (key: string) => {
-  if (!key || typeof window === undefined) {
-    return "";
+  const ISSERVER = typeof window === "undefined";
+  if (!ISSERVER) {
+    const token = localStorage.getItem(key);
+    return token;
   }
-  const token = localStorage?.getItem(key);
-  return token;
 };
 
 export const removeFromLocalStorage = (key: string) => {
-  if (!key || typeof window === undefined) {
-    return "";
+  const ISSERVER = typeof window === "undefined";
+  if (!ISSERVER) {
+    return localStorage.removeItem(key);
   }
-  return localStorage.removeItem(key);
 };

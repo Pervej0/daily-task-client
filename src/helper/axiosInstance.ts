@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { authKey } from "@/constant/authKey";
 import { getTokenFromLocalStorage } from "@/utils/localStorage";
 import axios from "axios";
@@ -9,7 +8,6 @@ export interface IMeta {
   total: number;
 }
 interface IResponse {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any;
   meta: IMeta;
 }

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { DatePickerDemo } from "@/components/shared/datePicker";
@@ -13,6 +12,7 @@ import formattedDate from "@/utils/dateFormatter";
 import React, { use, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { toast, Toaster } from "sonner";
+import { useRouter } from "next/router";
 
 const UpdateTask = ({ params }: { params: Promise<{ id: string }> }) => {
   const [date, setDate] = React.useState<Date>();
