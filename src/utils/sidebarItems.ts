@@ -13,7 +13,7 @@ const sidebarItems = [
   },
   {
     title: "Search Task",
-    path: "/add-task",
+    path: "/search-task",
     icon: Search,
   },
   {

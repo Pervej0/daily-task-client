@@ -10,13 +10,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useResetPasswordMutation } from "@/redux/api/auth.api";
 import { toast, Toaster } from "sonner";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import {
   removeFromLocalStorage,
   setToLocalStorage,
 } from "@/utils/localStorage";
 import { authKey } from "@/constant/authKey";
 import { removeAuthCookieToken } from "@/utils/validateCookieToken";
+import Loading from "@/components/Loading";
 
 const schema = z.object({
   newPassword: z
@@ -27,7 +28,15 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-const ResetPassword = () => {
+const resetPassword = () => {
+  return (
+    <Suspense fallback={<Loading />}>
+      <ResetPasswordContent />
+    </Suspense>
+  );
+};
+
+const ResetPasswordContent = () => {
   const [resetPassword] = useResetPasswordMutation();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -50,7 +59,6 @@ const ResetPassword = () => {
   const onSubmit = async (values: FormData) => {
     try {
       const res = (await resetPassword({ ...values, id })) as any;
-      console.log(res, "xxxxx");
       if (res?.data.success) {
         toast.success(res?.data.message || "Successfully reset has been done!");
         removeFromLocalStorage(authKey);
@@ -118,4 +126,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default resetPassword;
