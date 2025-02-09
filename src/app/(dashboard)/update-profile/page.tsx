@@ -31,7 +31,6 @@ const UpdateProfile = () => {
     };
 
     const result = await updateProfile(data);
-    console.log(result, "xpxx");
     if (result.data.success) {
       toast.success(result.data.message);
     } else {

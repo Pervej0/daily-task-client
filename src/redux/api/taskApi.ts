@@ -4,23 +4,29 @@ const taskApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     createTask: builder.mutation({
       query: (data) => ({ url: "/tasks", method: "POST", data }),
+      invalidatesTags: ["Task"],
     }),
     getAllTasks: builder.query({
       query: () => ({ url: "/tasks", method: "GET" }),
+      providesTags: ["Task"],
     }),
     getSingleTask: builder.query({
-      query: (params) => ({ url: "/task", method: "GET", params }),
+      query: (params) => ({ url: `/tasks/${params}`, method: "GET" }),
     }),
     updateTask: builder.mutation({
       query: ({ data, params }) => ({
-        url: "/tasks",
+        url: `/tasks/${params}`,
         method: "PUT",
-        body: data,
-        params,
+        data: data,
       }),
+      invalidatesTags: ["Task"],
     }),
-    deleteSingleTask: builder.query({
-      query: (params) => ({ url: "/tasks", method: "DELETE", params }),
+    deleteSingleTask: builder.mutation({
+      query: (params) => {
+        console.log(params);
+        return { url: `/tasks/${params}`, method: "DELETE" };
+      },
+      invalidatesTags: ["Task"],
     }),
   }),
 });
@@ -30,4 +36,5 @@ export const {
   useGetAllTasksQuery,
   useGetSingleTaskQuery,
   useUpdateTaskMutation,
+  useDeleteSingleTaskMutation,
 } = taskApi;
